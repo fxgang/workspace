@@ -15,3 +15,4 @@ print("123", '')
 member = '{"name":"xiaoming", "gender": "male", "age": 18}'
 print(member)
 #TODO 明天開始正式聯繫Python基礎
+print("完成Git测试... 已经可以正常工作")
