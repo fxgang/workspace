@@ -281,3 +281,27 @@ def keyinfo3(name, age = 20, *, ctiy = "四川.内江市", job = "黑龙骑士",
         for k in att:
             rst += k + ":" + str(att[k]) + "\t"
     return  rst
+
+def fact(n):
+    """
+    功能:计算n的阶乘，采用递归调用
+    :param n: 阶乘指数
+    :return: 阶乘值
+    """
+    if not isinstance(n, int) and (n > 0):
+        raise TypeError("必须是大于0的整数")
+    if n == 1:
+        return 1
+    return n * fact(n - 1)
+
+def fact2(n, v=1):
+    """
+    功能:计算n的阶乘，采用尾递归调用，本质上循环
+    :param n:阶乘指数
+    :param v:递归中间值
+    :return:阶乘值
+    """
+    if n == 1:
+        return v
+    else:
+        return fact2(n - 1, n * v)
