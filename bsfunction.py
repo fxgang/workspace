@@ -163,3 +163,16 @@ print(rst)
 
 #endregion
 
+#region 递归函数
+from myabs import fact
+n = 27
+d = fact(n)
+print("%d的阶乘是：%d" % (n, d))
+
+from  myabs import  fact2
+d = fact2(n)
+print("%d的阶乘是：%d" % (n, d))
+#endregion
+
+#TODO 明天学习 高级特征
+
