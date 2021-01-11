@@ -52,7 +52,8 @@ from advcodefunction import oddlist
 """
 #endregion
 
-#region 高阶函数 sorted
+#region 高阶函数
+"""
 #sorted()函数就可以对list进行排序
 #sorted()函数也是一个高阶函数，它还可以接收一个key函数来实现自定义的排序，例如按绝对值大小排序
 li=[36, 5, -12, 9, -21]
@@ -66,4 +67,87 @@ print("使用key=abs排序后：", li3)
 li4=sorted(li, key=abs, reverse=True)
 print("使用key=abs倒序排序后：", li4)
 
+"""
+#endregion
+
+#region 函数作为返回值
+"""
+from advcodefunction import lazy_sum
+lt = list(range(10, 21))
+f = lazy_sum(*lt)
+print(f())
+
+from advcodefunction import count
+f1, f2, f3 = count()
+print(f1(), f2(), f3())
+
+from advcodefunction import count1
+f1 = count1()
+print(f1)
+
+from advcodefunction import count2
+f1, f2, f3 = count2()
+print(f1(), f2(), f3())
+
+from advcodefunction import createlist
+f = createlist()
+print(f(),f(),f(),f(), f())
+
+from advcodefunction import createlist1
+f = createlist1()
+print(f(),f(),f(),f(), f(), f())
+
+from advcodefunction import createlist2
+f = createlist2()
+print(f(),f(),f(),f(), f(), f())
+"""
+
+#endregion
+
+#region 匿名函数
+"""
+#关键字lambda表示匿名函数，冒号前面的x表示函数参数。
+#匿名函数有个限制，就是只能有一个表达式，不用写return，返回值就是该表达式的结果。
+#f = lambda x, *args, para, **kwargs : [args, para, kwargs]
+lt = list(map(lambda x: x*x, list(range(1, 21))))
+print(lt)
+
+f = lambda x: x*x
+print(f(30))
+
+from advcodefunction import addsum
+f = addsum(10, 20)
+print(type(f))
+print(f(10, 20))
+"""
+#endregion
+
+#region 装饰器 decorator
+"""
+from advcodefunction import nowtime
+#由于nlog()是一个decorator，返回一个函数，
+#所以，原来的nowtime()函数仍然存在，只是现在同名的f变量指向了新的函数，于是调用nowtime()将执行新函数，即在nlog()函数中返回的wrapper()函数。
+#wrapper()函数的参数定义是(*args, **kw)，因此，wrapper()函数可以接受任意参数的调用。在wrapper()函数内，首先打印日志，再紧接着调用原始函数。
+f = nowtime
+#print(f.__name__, f.__doc__, f.__code__)
+print(f(), f.__name__)
+
+from advcodefunction import nowtime1
+#首先执行@plog("冯小刚")，返回的是decorator函数，
+#再调用返回的函数，参数是nowtime1函数，返回值最终是wrapper函数。
+#以上两种decorator的定义都没有问题，但还差最后一步。因为函数也是对象，它有__name__等属性，但你去看经过decorator装饰之后的函数，它们的__name__已经从原来的'nowtime'变成了'wrapper'：
+f = nowtime1
+print("\n", f(), f.__name__)
+"""
+#endregion
+
+#region 偏函数 Partial function
+#f = functools.partial(参数1，参数2，参数3)
+#参数1：函数对象，int
+#参数2：*args  可变参数，接收tuple，list，'100110010'
+#参数3：*kw  关键字参数，接收dict, { 'base': 2 }
+import functools
+f = functools.partial(int, base=2)
+print(f('100110010'))
+print(f('ff', base=16))
 #endregion
