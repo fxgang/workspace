@@ -343,6 +343,7 @@ print("实例增加类实例方法后：", as1.score, as1.__class__.score)
 #endregion
 
 #region __slots__ @property
+
 class Person(object):
     __slots__ = ("name", "age", "_mcode")
     def __init__(self, name, age, mcode = "10010"):
@@ -380,7 +381,7 @@ class Person(object):
     @property
     def mcode(self):
         return self._mcode
-
+'''
 wj = Person("fxgang", 45)
 wj.info()
 #不能增加adr属性 因为__slots__限制
@@ -393,4 +394,5 @@ wj.pname = "张三丰"
 wj.info()
 #使用__slots__要注意，__slots__定义的属性仅对当前类实例起作用，对继承的子类是不起作用的
 #除非在子类中也定义__slots__，这样，子类实例允许定义的属性就是自身的__slots__加上父类的__slots__
+'''
 #endregion
